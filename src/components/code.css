@@ -1,0 +1,35 @@
+/* Terminal and file panels (Code.tsx). Dark like the generic code visual, lines build in quickly. */
+.code { min-width: 0; border-radius: 16px; overflow: hidden; background: var(--term); color: var(--term-ink); font-family: var(--mono); box-shadow: 0 18px 40px -26px rgba(11, 31, 58, .55);
+  animation: dg-in .55s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc((var(--d, 0) + var(--i, 0)) * 260ms + 300ms); }
+.code[data-kind='file'] { background: #102445; }
+.code-top { display: flex; align-items: center; gap: 6px; padding: 9px 14px; background: rgba(255, 255, 255, .06); font-size: 12px; color: #8aa4d6; }
+.code-top i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255, 255, 255, .18); }
+.code-top span { margin-left: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.code-body { --lh: 1.5em; position: relative; padding: 10px 0; font-size: clamp(12px, 1.12vw, 15px); }
+.ln { display: flex; align-items: center; gap: 10px; padding: 0 16px; height: var(--lh);
+  animation: dg-in .4s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc((var(--d, 0) + var(--i, 0)) * 260ms + var(--l, 0) * 90ms + 450ms); }
+.ln pre { flex: 1; min-width: 0; margin: 0; font: inherit; line-height: 1.5; white-space: pre; overflow: hidden; text-overflow: ellipsis; }
+.ln[data-k='cmd'] pre::before { content: '$ '; color: #6ea0ff; }
+.ln[data-k='cmd'], .ln[data-k='cont'] { color: #fff; font-weight: 500; }
+.ln[data-k='out'] { color: #9fb3d6; }
+.ln[data-k='ok'] { color: #5fd3a0; }
+.ln[data-k='bad'] { color: #ff8a7a; }
+.ln[data-dim] { opacity: .62; }
+.ln[data-mark='a'] { box-shadow: inset 3px 0 0 #8aa4d6; }
+.ln[data-mark='b'] { box-shadow: inset 3px 0 0 #6ea0ff; background: rgba(110, 160, 255, .12); }
+.ln[data-mark='x'] { opacity: .45; }
+.ln[data-mark='x'] pre { text-decoration: line-through; }
+.ln[data-mark='bad'] { background: rgba(255, 110, 90, .14); box-shadow: inset 3px 0 0 #ff8a7a; }
+.c-key { color: #6ea0ff; font-weight: 600; }
+.c-var { color: #f2c46d; }
+.c-cmt { color: #6f86ad; font-style: italic; }
+.c-pre { color: #8aa4d6; font-weight: 400; }
+.c-chip { flex: none; padding: 1px 8px; border-radius: 6px; background: rgba(110, 160, 255, .16); color: #b9d0ff; font-size: .82em; }
+.c-n { flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: var(--blue); color: #fff; font-family: 'Bricolage Grotesque Variable', system-ui, sans-serif; font-size: 13px; font-weight: 700; }
+/* group brackets: font-size stays the body's, so --lh lines up with the code lines */
+.code[data-grp] .ln { padding-right: 200px; }
+.c-grp { position: absolute; right: 16px; width: 170px; top: calc(10px + var(--f) * var(--lh)); height: calc(var(--n) * var(--lh)); display: flex; align-items: center; padding-left: 22px;
+  animation: dg-in .4s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc((var(--d, 0) + var(--i, 0)) * 260ms + var(--l, 0) * 90ms + 450ms); }
+/* a real bracket per group: top and bottom ticks, a small gap to the next group */
+.c-grp::before { content: ''; position: absolute; left: 0; top: 4px; bottom: 4px; width: 12px; border: 3px solid #6ea0ff; border-right: 0; border-radius: 8px 0 0 8px; }
+.c-grp b { font-family: 'Bricolage Grotesque Variable', system-ui, sans-serif; font-size: 14px; color: #c9dbff; }
