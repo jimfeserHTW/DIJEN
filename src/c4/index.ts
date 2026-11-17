@@ -81,7 +81,7 @@ const chapter: Chapter = {
             ['`docker compose logs -f web`', 'Follow the logs of one service'],
             ['`docker compose down`', 'Stop and remove containers and the network'],
             ['`docker compose down -v`', 'Also remove the named volumes'],
-            ['`docker-compose …`', 'The older standalone command from the lecture. Same file format'],
+            ['`docker-compose …`', 'The older standalone command. Same file format'],
           ] },
         },
       ],

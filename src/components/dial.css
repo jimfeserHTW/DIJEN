@@ -1,0 +1,26 @@
+/* Dial: a compass-like 0–100 % scale; ticks shrink and fade towards the edges like a ring turning away.
+   Vertical layout (px from the top): titles 0–16 · gap · item lines 24–48 · ticks around the axis at 36 · % labels from 52.
+   Everything scales around that same axis, so the gaps shrink in proportion and nothing ever overlaps. */
+.dial-wrap { --axis: 36px; position: relative; flex: 1; min-width: 0; height: 68px; }
+.dial-wrap::after { content: ''; position: absolute; left: 50%; top: 22px; width: 2px; height: 28px; margin-left: -1px; border-radius: 2px; background: var(--blue); pointer-events: none; }
+.dial { display: flex; height: 100%; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; container-type: inline-size;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 32%, #000 68%, transparent); mask-image: linear-gradient(90deg, transparent, #000 32%, #000 68%, transparent); }
+.dial::-webkit-scrollbar { display: none; }
+/* half a dial of empty space on each side, so 0 % and 100 % can reach the needle */
+.dial-track { position: relative; flex: none; margin: 0 50cqw; }
+
+.dial-tick { --top: 33px; position: absolute; top: var(--top); width: 1px; height: 6px; margin-left: -.5px; background: color-mix(in srgb, var(--ink-3) 55%, transparent); }
+.dial-tick[data-major] { --top: 28px; height: 16px; background: var(--ink-3); }
+.dial-tick span { position: absolute; top: 24px; left: 50%; translate: -50% 0; font-size: 11px; line-height: 14px; font-style: normal; color: var(--ink-3); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+.dial-mark { --top: 0px; position: absolute; top: 0; height: 48px; padding: 0; border: 0; background: none; font: inherit; font-size: 12px; color: var(--ink-3); cursor: pointer; }
+.dial-mark span { position: absolute; top: 0; left: 12px; right: 12px; line-height: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: color .2s; }
+.dial-mark::after { content: ''; position: absolute; left: 50%; top: 24px; width: 2px; height: 24px; margin-left: -1px; background: var(--ink-3); }
+.dial-mark:hover span { color: var(--ink); }
+.dial-mark[aria-current] span { color: var(--ink); font-weight: 600; }
+.dial-mark:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 6px; }
+
+@supports (animation-timeline: view()) {
+  .dial-tick, .dial-mark { transform-origin: 50% calc(var(--axis) - var(--top)); animation: ring linear both; animation-timeline: view(inline); }
+}
+@keyframes ring { 0%, 100% { scale: .35; opacity: 0; } 50% { scale: 1; opacity: 1; } }

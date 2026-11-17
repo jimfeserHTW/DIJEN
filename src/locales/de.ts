@@ -12,7 +12,10 @@ const de: Record<string, string> = {
   'closeMenu': 'Menü schließen',
   'lang': 'Sprache',
   'title': 'Docker und Compose lernen',
-  'footer': 'StudyNix. Basierend auf der Vorlesung „Verteilte Anwendungen – Deployment und Docker“.',
+  'footer': '© 2026 StudyNix. Freie Software unter AGPL-3.0.',
+  'Home': 'Startseite',
+  'Legal': 'Rechtliches',
+  'Source code': 'Quellcode',
 
   // landing
   'Docker, layer by layer.': 'Docker, Schicht für Schicht.',
@@ -38,6 +41,7 @@ const de: Record<string, string> = {
   'Next chapter: {{title}}': 'Nächstes Kapitel: {{title}}',
   'Back to all chapters': 'Zurück zu allen Kapiteln',
   'Progress': 'Fortschritt',
+  'Slides': 'Folien',
   '{{n}} of 4': '{{n}} von 4',
 }
 

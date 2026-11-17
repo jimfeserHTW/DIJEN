@@ -6,7 +6,8 @@
 .pres-top { display: flex; align-items: center; gap: 16px; padding: 18px clamp(16px, 3vw, 32px); }
 .exit { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px 8px 12px; border-radius: 99px; background: var(--card); box-shadow: 0 0 0 1px var(--line); text-decoration: none; font-size: 14px; font-weight: 600; transition: box-shadow .2s; }
 .exit:hover { box-shadow: 0 0 0 2px var(--ink); }
-.sect { color: var(--ink-3); font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.count b { color: var(--blue); }
+
 .count { margin-left: auto; color: var(--ink-3); font-size: 14px; font-variant-numeric: tabular-nums; }
 .arrow { position: fixed; top: 50%; translate: 0 -50%; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; border: 0; background: var(--card); color: var(--ink); box-shadow: 0 0 0 1px var(--line), 0 10px 24px -12px rgba(11, 31, 58, .35); cursor: pointer; transition: background .2s, color .2s, box-shadow .2s; z-index: 5; }
 .arrow[data-side='l'] { left: clamp(10px, 2vw, 28px); }

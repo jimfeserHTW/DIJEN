@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { deckOf, type Chapter } from '../content.ts'
 import { Visuals } from './Visuals.tsx'
+import { Dial } from './Dial.tsx'
 
 const Chevron = ({ flip }: { flip?: boolean }) => (
   <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" style={flip ? { transform: 'scaleX(-1)' } : undefined}>
@@ -42,8 +43,8 @@ export function Presentation({ chapter, index, next }: { chapter: Chapter; index
           <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" /></svg>
           {t('Exit')}
         </a>
-        <span className="sect">{t(chapter.title)}: {t(page.title)}</span>
-        <span className="count">{index + 1} / {n}</span>
+        <Dial items={deck.map(d => t(d.slide.title))} index={index} onSelect={goto} label={t('Slides')} />
+        <span className="count" title={`${t(chapter.title)}: ${t(page.title)}`}>{index + 1} / {n} · <b>{Math.round(((index + 1) / n) * 100)} %</b></span>
       </header>
 
       <main className="stage">
