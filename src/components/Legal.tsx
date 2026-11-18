@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
-export const SOURCE = 'https://github.com/jimfeserHTW/SN'
+export const SOURCE = 'https://github.com/jimfeserHTW/DIJEN'
 
 // Legal texts stay German only: the German version is the binding one.
 // shortcut: [..] placeholders must be filled with the operator's real details before going public.
@@ -16,7 +16,7 @@ const IMPRESSUM = (
     <h2>Haftung für Inhalte und Links</h2>
     <p>Die Inhalte dieser Seite wurden mit Sorgfalt erstellt. Für Richtigkeit, Vollständigkeit und Aktualität wird keine Gewähr übernommen. Für Inhalte externer Seiten, auf die verlinkt wird, sind ausschließlich deren Betreiber verantwortlich.</p>
     <h2>Lizenz</h2>
-    <p>StudyNix ist freie Software unter der GNU Affero General Public License v3.0. Der Quellcode ist öffentlich verfügbar: <a href={SOURCE}>{SOURCE}</a></p>
+    <p>DIJEN ist freie Software unter der GNU Affero General Public License v3.0. Der Quellcode ist öffentlich verfügbar: <a href={SOURCE}>{SOURCE}</a></p>
   </>
 )
 

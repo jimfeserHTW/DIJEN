@@ -31,7 +31,7 @@ export default function App() {
   const { chapter, slide, legal } = parse(hash)
   useEffect(() => {
     const t = chapter && slide >= 0 ? tr(deckOf(chapter)[slide].slide.title) : chapter ? tr(chapter.title) : legal ? tr(LEGAL[legal].title) : tr('title')
-    document.title = `${t} – StudyNix`
+    document.title = `${t} – DIJEN`
   }, [chapter, slide, legal, tr, i18n.language])
 
   if (chapter && slide >= 0) return <Presentation chapter={chapter} index={slide} next={chapters[chapters.indexOf(chapter) + 1]} />
@@ -42,7 +42,7 @@ export default function App() {
       <main id="main">{chapter ? <ChapterView chapter={chapter} /> : legal ? <LegalView id={legal} /> : <Landing />}</main>
       <footer className="foot">
         <div className="foot-in">
-          <a className="brand" href="#/" aria-label={tr('home')}><Mark />StudyNix</a>
+          <a className="brand" href="#/" aria-label={tr('home')}><Mark />DIJEN</a>
           <nav className="foot-nav" aria-label={tr('Legal')}>
             {(Object.keys(LEGAL) as LegalId[]).map(k => <a key={k} href={`#/${k}`}>{tr(LEGAL[k].title)}</a>)}
             <a href={SOURCE}>{tr('Source code')}</a>

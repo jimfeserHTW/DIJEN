@@ -32,7 +32,7 @@ export function Header({ route, chapterId }: { route: string; chapterId?: string
       {(menu || sheet) && <div className="scrim" onClick={() => { hide(); setSheet(false) }} onMouseEnter={hide} aria-hidden="true" />}
       <header className="bar">
         <div className="bar-in">
-          <a className="brand" href="#/" aria-label={t('home')} onMouseEnter={hide}><Mark /><span aria-hidden="true">S<span className="grow">tudy</span>N<span className="grow">ix</span></span></a>
+          <a className="brand" href="#/" aria-label={t('home')} onMouseEnter={hide}><Mark /><span className="grow" aria-hidden="true">DIJEN</span></a>
           <nav className="nav" aria-label={t('nav.label')}>
             <a href={href(chapters[0].id)} aria-current={chapterId ? 'page' : undefined} aria-expanded={menu} data-open={menu}
               onMouseEnter={show} onFocus={show}>{t('nav.theory')}</a>
