@@ -1,10 +1,10 @@
 import type { Chapter } from '../components/types.ts'
-import { Problem, Idea, Levels, VmVsContainer, OwnOs, Where, Platforms, Architecture, ImageContainer, Lifecycle, UseCases, Limits, Summary } from './diagrams.tsx'
+import { Problem, Idea, Levels, Architecture, ImageContainer, Lifecycle, UseCases, Limits, Summary } from './diagrams.tsx'
 
-// Plan chapter 1: no commands, only the big picture. No Kubernetes.
+// Plan chapter 1: the big picture; commands appear only as an anatomy, nothing to type. No Kubernetes.
 const chapter: Chapter = {
   id: 'basics', title: 'Docker verstehen', level: 'Beginner',
-  blurb: 'Was ist Docker und wo läuft es? Das Problem, die Idee, Container gegen VMs, die Architektur und die Grenzen. Ganz ohne Befehle.',
+  blurb: 'Was ist Docker? Das Problem, die Idee, die Ebenen der Virtualisierung, die Architektur, der Aufbau eines Befehls und die Grenzen.',
   pages: [
     {
       id: 'idee', title: 'Problem und Idee', summary: 'Warum es Container gibt: „Bei mir läuft’s“ und die Lösung.',
@@ -15,26 +15,27 @@ const chapter: Chapter = {
       ],
     },
     {
-      id: 'virtualisierung', title: 'Virtualisierung', summary: 'Drei Ebenen, VM gegen Container und der geteilte Kernel.',
+      id: 'virtualisierung', title: 'Virtualisierung', summary: 'Die drei Ebenen der Virtualisierung.',
       slides: [
         { title: 'Virtualisierung in drei Ebenen', view: <Levels /> },
-        { title: 'VM gegen Container', view: <VmVsContainer /> },
-        { title: 'Hat ein Container ein eigenes Betriebssystem?', view: <OwnOs /> },
       ],
     },
     {
-      id: 'stack', title: 'Docker im Stack', summary: 'Wer was verwaltet, und wie Docker auf Linux, macOS und Windows läuft.',
-      slides: [
-        { title: 'Wo Docker im Stack sitzt', view: <Where /> },
-        { title: 'Docker auf Linux, macOS und Windows', view: <Platforms /> },
-      ],
-    },
-    {
-      id: 'architektur', title: 'Architektur und Begriffe', summary: 'Client, Daemon und Registry, Image und Container, Lebenszyklus.',
+      id: 'architektur', title: 'Architektur und Begriffe', summary: 'Client, Daemon und Registry, Image und Container, Lebenszyklus, Aufbau eines Befehls.',
       slides: [
         { title: 'Die Architektur auf einen Blick', view: <Architecture /> },
         { title: 'Image, Container, Registry', view: <ImageContainer /> },
         { title: 'Lebenszyklus eines Containers', view: <Lifecycle /> },
+        {
+          title: 'Aufbau eines Docker-Befehls',
+          visual: { kind: 'anatomy', rows: [
+            [
+              { text: 'docker', label: 'Programm' }, { text: 'container', label: 'Objekt: worum es geht' }, { text: 'run', label: 'Aktion: was passiert' },
+              { text: '-d', label: 'Option: im Hintergrund' }, { text: '-p 8080:80', label: 'Option mit Wert: Port' }, { text: 'nginx:1.27', label: 'Argument: welches Image' },
+            ],
+            [{ text: 'docker', label: 'Programm' }, { text: 'ps', label: 'Kurzform: container ls' }, { text: '-a', label: 'Option: auch gestoppte' }],
+          ] },
+        },
       ],
     },
     {

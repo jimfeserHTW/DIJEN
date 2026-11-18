@@ -24,6 +24,6 @@ export type Visual =
 /** A slide shows generic visuals, or its own chapter-specific diagram (`view`). */
 export type Slide = { title: string; visual?: Visual | Visual[]; view?: ReactNode }
 export type Page = { id: string; title: string; summary: string; slides: Slide[] }
-export type Chapter = { id: string; title: string; level: 'Beginner' | 'Intermediate'; blurb: string; pages: Page[] }
+export type Chapter = { id: string; title: string; level: 'Beginner' | 'Intermediate' | 'Advanced'; blurb: string; pages: Page[] }
 
 export const flow = (nodes: NodeD[], links: string[] = []): Visual => ({ kind: 'flow', nodes, links })

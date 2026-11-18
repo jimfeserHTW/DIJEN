@@ -24,7 +24,8 @@ const de: Record<string, string> = {
   'See all chapters': 'Alle Kapitel ansehen',
   'Chapters': 'Kapitel',
   'Beginner': 'Einsteiger',
-  'Intermediate': 'Fortgeschritten',
+  'Intermediate': 'Mittelstufe',
+  'Advanced': 'Fortgeschritten',
 
   // chapter page
   'All chapters': 'Alle Kapitel',

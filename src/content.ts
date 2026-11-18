@@ -3,7 +3,7 @@
 import type { Chapter, Page } from './components/types.ts'
 import c0 from './c0/index.tsx'
 import c1 from './c1/index.tsx'
-import c2 from './c2/index.ts'
+import c2 from './c2/index.tsx'
 import c3 from './c3/index.ts'
 import c4 from './c4/index.ts'
 import c5 from './c5/index.ts'

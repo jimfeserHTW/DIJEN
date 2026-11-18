@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { deckOf, type Chapter } from '../content.ts'
 import { Visuals } from './Visuals.tsx'
@@ -22,6 +22,22 @@ export function Presentation({ chapter, index, next }: { chapter: Chapter; index
   const prev = useRef(index)
   const dir = index >= prev.current ? 'fwd' : 'back'
   useEffect(() => { prev.current = index }, [index])
+
+  const stageRef = useRef<HTMLElement>(null)
+  const slideRef = useRef<HTMLElement>(null)
+  // Scale the whole slide as one group: 76% of the width (12% margin each side), or less if the height runs out.
+  useLayoutEffect(() => {
+    const stage = stageRef.current!, slide = slideRef.current!
+    const fit = () => {
+      const height = stage.clientHeight - parseFloat(getComputedStyle(stage).paddingBottom)
+      slide.style.setProperty('--fit', String(Math.min(stage.clientWidth * .76 / slide.offsetWidth, height / slide.offsetHeight)))
+    }
+    fit()
+    const observer = new ResizeObserver(fit)
+    observer.observe(stage)
+    observer.observe(slide)
+    return () => observer.disconnect()
+  }, [index, i18n.language])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -47,8 +63,8 @@ export function Presentation({ chapter, index, next }: { chapter: Chapter; index
         <span className="count" title={`${t(chapter.title)}: ${t(page.title)}`}>{index + 1} / {n} · <b>{Math.round(((index + 1) / n) * 100)} %</b></span>
       </header>
 
-      <main className="stage">
-        <article className="slide" key={`${index}-${i18n.language}`} data-dir={dir} aria-roledescription="slide" aria-label={t('{{i}} of {{n}}: {{title}}', { i: index + 1, n, title: t(slide.title) })}>
+      <main className="stage" ref={stageRef}>
+        <article className="slide" ref={slideRef} key={`${index}-${i18n.language}`} data-dir={dir} aria-roledescription="slide" aria-label={t('{{i}} of {{n}}: {{title}}', { i: index + 1, n, title: t(slide.title) })}>
           <h1>{t(slide.title)}</h1>
           {slide.view ?? (slide.visual && <Visuals v={slide.visual} />)}
         </article>

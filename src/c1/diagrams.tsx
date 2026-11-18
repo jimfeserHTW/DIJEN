@@ -238,7 +238,7 @@ export const Networks = () => (
         <Box i={1} x={30} y={46} w={150} h={64} t="container" label="proxy" sub="172.18.0.2" />
         <Box i={1} x={225} y={46} w={150} h={64} t="container" label="web" sub="fragt nach „db“" />
         <Box i={1} x={420} y={46} w={150} h={64} t="container" label="db" sub="lauscht auf :3306" />
-        <Bus x={20} w={370} y={146} name="Netz frontend" tx={122} />
+        <Bus x={20} w={370} y={146} name="Netz frontend" tx={36} />
         <Bus x={242} w={338} y={190} name="Netz backend" tx={256} />
         <Wire i={1} d="M105 110 V146" /><Wire i={1} d="M300 110 V146" /><Wire i={1} d="M350 110 V190" /><Wire i={1} d="M495 110 V190" />
 
@@ -254,7 +254,8 @@ export const Networks = () => (
         <Label i={3} x={194} y={237} anchor="end" size={13} weight={600}>fragt: wer ist „db“?</Label>
         <Num i={4} n={2} x={210} y={266} />
         <Label i={4} x={194} y={271} anchor="end" size={13} weight={600}>Antwort: 172.19.0.3</Label>
-        <Arrow i={5} kind="ok" d="M350 202 H 466 V 114" />
+        <Arrow i={5} kind="ok" d="M375 90 H416" />
+        <Num i={5} n={3} x={397} y={62} />
         <Num i={5} n={3} x={300} y={240} />
         <Label i={5} x={316} y={245} anchor="start" size={13} weight={700} tone="ok">verbindet direkt 172.19.0.3:3306</Label>
       </Svg>
@@ -302,7 +303,7 @@ export const Variables = () => (
 
       <Box i={5} x={col[1]} y={263} w={W} h={58} label="ENV APP_ENV=prod" sub="harmlos" size={15} />
       <Box i={5} x={col[2]} y={263} w={W} h={58} t="bad" label="ENV DB_PASSWORD" sub="Geheimnis im Image ✗" size={15} />
-      <Arrow i={5} d={`M${mid(2)} 200 C ${mid(2)} 230, ${mid(1)} 230, ${mid(1)} 259`} />
+      <Arrow i={5} d={`M${mid(2)} 200 V 231 H ${mid(1)} V 259`} />
       <Arrow i={5} d={`M${mid(2)} 200 V 259`} />
       <Label i={5} x={mid(0) + 10} y={288} anchor="start" size={13} weight={600}>am Image</Label>
       <Label i={5} x={mid(0) + 10} y={304} anchor="start" size={13} weight={600}>vorbei</Label>
