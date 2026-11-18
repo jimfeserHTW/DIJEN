@@ -9,7 +9,6 @@ const chapter: Chapter = {
     {
       id: 'idee', title: 'Problem und Idee', summary: 'Warum es Container gibt: „Bei mir läuft’s“ und die Lösung.',
       slides: [
-        { title: 'Lernpfad: Wo stehen wir?', visual: { kind: 'path', active: 0, advanced: 5, stops: ['Docker verstehen', 'Compose', 'Images & Container', 'Dockerfile & Layers', 'Netzwerke & Volumes', 'Isolation', 'Sicherheit & mehr'] } },
         { title: 'Das Problem: „Bei mir läuft’s“', view: <Problem /> },
         { title: 'Die Idee: App und Umgebung verpacken', view: <Idea /> },
       ],

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { chapters, deckOf, slideHref, type Chapter } from '../content.ts'
+import { chapters, deckOf, type Chapter } from '../content.ts'
+import { Contents } from './Contents.tsx'
 
 /** Chapter intro: what it covers, then start the presentation (or jump to a section). */
 export function ChapterView({ chapter }: { chapter: Chapter }) {
@@ -17,16 +18,7 @@ export function ChapterView({ chapter }: { chapter: Chapter }) {
         <a className="btn" href={`#/${chapter.id}/1`}>{t('Start presentation')}</a>
         <span className="dim">{t('{{n}} slides', { n: deckOf(chapter).length })}</span>
       </div>
-      <ol className="pagelist">
-        {chapter.pages.map((p, i) => (
-          <li key={p.id}>
-            <a href={slideHref(chapter, p)}>
-              <span className="num">{i + 1}</span>
-              <span><strong>{t(p.title)}</strong><span>{t(p.summary)}</span></span>
-            </a>
-          </li>
-        ))}
-      </ol>
+      <Contents chapter={chapter} />
     </div>
   )
 }

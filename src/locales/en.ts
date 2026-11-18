@@ -40,11 +40,7 @@ const en: Record<string, string> = {
   /* ── learning path (both chapters) ── */
   'Lernpfad: Wo stehen wir?': 'Learning path: where are we?',
   'Docker verstehen': 'Understanding Docker',
-  'Images & Container': 'Images & containers',
-  'Dockerfile & Layers': 'Dockerfile & layers',
-  'Netzwerke & Volumes': 'Networks & volumes',
   'Isolation': 'Isolation',
-  'Sicherheit & mehr': 'Security & more',
   'Problem und Idee': 'Problem and idea',
 
   /* ── chapter 0: index ── */

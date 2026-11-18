@@ -17,7 +17,6 @@ export type Visual =
   | { kind: 'cards'; items: { title: string; text: string }[] }
   | { kind: 'table'; head: string[]; rows: string[][] }
   | { kind: 'mindmap'; root: string; branches: { label: string; leaves: string[] }[] }
-  | { kind: 'path'; stops: string[]; active?: number; advanced?: number } // metro line; stops from `advanced` on are tinted
   | { kind: 'matrix'; head: string[]; rows: string[][]; legend?: string } // cells '0'..'4' become Harvey balls
   | { kind: 'bars'; legend: [string, string]; rows: { label: string; a: number; b: number }[] } // relative size, 0..100
 

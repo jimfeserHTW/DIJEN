@@ -16,7 +16,6 @@ const count = (v: Visual): number => {
     case 'cards': return v.items.length
     case 'table': return v.rows.length + 1
     case 'mindmap': return 1 + 2 * v.branches.length
-    case 'path': return v.stops.length
     case 'matrix': return v.rows.length + 1
     case 'bars': return v.rows.length
   }
@@ -125,14 +124,6 @@ function One({ v }: { v: Visual }) {
             ))}
           </ul>
         </div>
-      )
-    case 'path':
-      return (
-        <ol className="path">
-          {v.stops.map((s, k) => (
-            <li key={k} style={at(k)} data-on={k === v.active || undefined} data-adv={(v.advanced !== undefined && k >= v.advanced) || undefined}><i />{t(s)}</li>
-          ))}
-        </ol>
       )
     case 'matrix':
       return (

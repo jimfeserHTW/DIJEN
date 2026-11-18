@@ -9,7 +9,6 @@ const chapter: Chapter = {
     {
       id: 'idee', title: 'Problem und Idee', summary: 'Von vielen Befehlen zu einer Datei.',
       slides: [
-        { title: 'Lernpfad: Wo stehen wir?', visual: { kind: 'path', active: 1, advanced: 5, stops: ['Docker verstehen', 'Compose', 'Images & Container', 'Dockerfile & Layers', 'Netzwerke & Volumes', 'Isolation', 'Sicherheit & mehr'] } },
         { title: 'Das Problem: Mehrere Container von Hand', view: <Problem /> },
         { title: 'Die Idee: Die Umgebung als Datei beschreiben', view: <Idea /> },
       ],

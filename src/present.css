@@ -109,7 +109,7 @@
   /* phones keep the reflowing, scrollable layout: 1080px scaled down would be unreadable */
   .stage { overflow: hidden auto; justify-content: stretch; align-content: stretch; padding: 0 20px 80px; }
   .slide { margin: auto; width: 100%; scale: none; }
-  .flow[data-dir='row'], .mm, .tbl { overflow-x: auto; }
+  .flow[data-dir='row'], .mm, .tbl, .path { overflow-x: auto; }
   .tbl { display: block; }
   .mm { align-items: flex-start; }
   .code-grid { grid-template-columns: 1fr; }
@@ -155,16 +155,21 @@
 .node[data-tone='warn'] span, .node[data-tone='warn'] ul { color: #a8392c; }
 
 /* path: metro line, current stop pulses, advanced stops are tinted */
-.path { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 18px 0; counter-reset: stop; }
-.path li { flex: 1 1 110px; min-width: 100px; position: relative; display: grid; justify-items: center; gap: 10px; padding-top: 4px; text-align: center; font-size: 15px; color: var(--ink-2); }
-.path li::before { content: ''; position: absolute; top: 14px; left: -50%; width: 100%; height: 4px; background: var(--ink-3); opacity: .4; }
+.path { list-style: none; padding: 0; margin: 0; display: flex; }
+.path li { flex: 1 1 0; min-width: 110px; position: relative; display: grid; justify-items: center; align-content: start; gap: 8px; padding-top: 4px; text-align: center; font-size: 17px; color: var(--ink-2); }
+.path li[data-tier='Beginner'] { --tier: var(--ok); }
+.path li[data-tier='Intermediate'] { --tier: var(--blue); }
+.path li[data-tier='Advanced'] { --tier: #b2531a; }
+/* line to the previous stop: it starts and ends 4px clear of each dot's ring, so it never touches a dot */
+.path li::before { content: ''; position: absolute; top: 13px; left: calc(-50% + 18px); width: calc(100% - 36px); height: 4px; border-radius: 2px; background: var(--ink-3); opacity: .35; }
+.path li[data-done]::before { background: var(--tier); opacity: 1; }
 .path li:first-child::before { display: none; }
-.path i { position: relative; z-index: 1; width: 22px; height: 22px; border-radius: 50%; background: var(--card); box-shadow: 0 0 0 3px var(--ink); }
-.path li[data-adv] i { box-shadow: 0 0 0 3px #b2531a; }
-.path li[data-adv] { color: #b2531a; }
-.path li[data-on] { color: var(--blue); font-weight: 700; }
-.path li[data-on] i { background: var(--blue); box-shadow: 0 0 0 3px var(--blue); animation: pulse 1.8s ease-out infinite 1.2s; }
-@keyframes pulse { 0% { box-shadow: 0 0 0 3px var(--blue), 0 0 0 3px rgba(40, 90, 220, .5); } 100% { box-shadow: 0 0 0 3px var(--blue), 0 0 0 16px rgba(40, 90, 220, 0); } }
+.path i { width: 22px; height: 22px; border-radius: 50%; background: var(--card); box-shadow: 0 0 0 3px var(--tier); }
+.path span { line-height: 1.25; }
+.path small { font-size: 13px; font-weight: 700; color: var(--tier); }
+.path li[data-on] span { color: var(--ink); font-weight: 700; }
+.path li[data-on] i { background: var(--tier); animation: pulse 1.8s ease-out infinite 1.2s; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 3px var(--tier), 0 0 0 3px color-mix(in srgb, var(--tier) 50%, transparent); } 100% { box-shadow: 0 0 0 3px var(--tier), 0 0 0 16px transparent; } }
 
 /* matrix: Harvey balls */
 .matrix td, .matrix tbody th { vertical-align: middle; }
