@@ -30,7 +30,7 @@ const Node = ({ d, i }: { d: NodeD; i: number }) => (
 )
 
 /** `code` spans inside a string become <code>. */
-const rich = (s: string) => t(s).split('`').map((p, i) => (i % 2 ? <code key={i}>{p}</code> : p))
+export const rich = (s: string) => t(s).split('`').map((p, i) => (i % 2 ? <code key={i}>{p}</code> : p))
 
 const Link = ({ label, i }: { label?: string; i: number }) => (
   <div className="link" style={at(i)}><span>{label ? t(label) : ' '}</span><i /></div>

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
 // Metaphor icons on a 48×48 grid. Usable inside an SVG diagram (Icon) or on their own (IconSvg).
-export type IconName = 'laptop' | 'server' | 'warehouse' | 'blueprint' | 'crate' | 'person' | 'bolt' | 'file' | 'trash' | 'check' | 'browser' | 'folder'
+export type IconName = 'laptop' | 'server' | 'warehouse' | 'blueprint' | 'crate' | 'person' | 'bolt' | 'file' | 'trash' | 'check' | 'browser' | 'folder' | 'network'
 
 const draw: Record<IconName, ReactNode> = {
   laptop: <><rect x="9" y="10" width="30" height="21" rx="2" /><path d="M4 35h40l-3 4H7z" /></>,
@@ -23,6 +23,7 @@ const draw: Record<IconName, ReactNode> = {
   trash: <><path d="M9 13h30M19 13V8h10v5M13 13l2 29h18l2-29" /><path d="M21 20v15M27 20v15" /></>,
   browser: <><rect x="4" y="8" width="40" height="32" rx="3" fill="#fff" /><path d="M4 16h40" /><circle cx="9" cy="12" r="1" /><circle cx="13" cy="12" r="1" /><rect x="18" y="10" width="20" height="4" rx="2" /><path d="M11 24h26M11 30h18" /></>,
   folder: <path d="M4 12a3 3 0 0 1 3-3h11l4 5h19a3 3 0 0 1 3 3v20a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z" fill="#fff3d6" />,
+  network: <><path d="M24 15v9M10 34v-5a5 5 0 0 1 5-5h18a5 5 0 0 1 5 5v5M24 24v10" stroke="#1d63ed" /><circle cx="24" cy="10" r="6" fill="#dce9ff" stroke="#1d63ed" />{[10, 24, 38].map(x => <circle key={x} cx={x} cy="39" r="5" fill="#dce9ff" stroke="#1d63ed" />)}</>,
   check: <><circle cx="24" cy="24" r="18" fill="#e2f5ec" stroke="#0e8a5f" /><path d="M16 24l6 6 11-12" stroke="#0e8a5f" strokeWidth="3" /></>,
 }
 

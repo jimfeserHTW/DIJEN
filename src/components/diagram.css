@@ -21,7 +21,7 @@
 [data-t='gone'] { --bg: transparent; --fg: var(--ink-3); --stroke: var(--ink-3); }
 
 /* build-in: same rhythm as the generic visuals */
-.srow, .role, .stk-status, .sb, .sa, .sl, .dgm .ico-in { animation: dg-in .55s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc((var(--d, 0) + var(--i, 0)) * 260ms + 300ms); }
+.srow, .role, .stk-status, .sb, .sa, .sl, .dgm .ico-in, .num, .tick { animation: dg-in .55s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc((var(--d, 0) + var(--i, 0)) * 260ms + 300ms); }
 .srow { animation-name: dg-up; }
 .sb, .sa, .sl { transform-box: fill-box; }
 @keyframes dg-in { from { opacity: 0; transform: translateY(8px); } }
@@ -160,3 +160,19 @@
 .answer span, .mk { grid-row: span 2; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 700; }
 [data-m='ok'] { background: var(--ok); }
 [data-m='bad'] { background: var(--bad); }
+
+/* badges and marks inside svg diagrams */
+.num circle { fill: var(--blue); }
+.num text { fill: #fff; stroke: none; font-size: 13px; font-weight: 700; }
+.tick circle { fill: #c7d1e0; }
+.tick text { fill: #fff; stroke: none; font-size: 13px; font-weight: 700; }
+.tick[data-ok] circle { fill: var(--ok); }
+.tick[data-bad] circle { fill: var(--bad); }
+/* slide layouts: diagram plus takeaway, code beside a diagram */
+.dg-col { display: grid; gap: 14px; min-width: 0; }
+.dg-split { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 28px; align-items: center; }
+/* two files and their result, side by side */
+.dg-merge { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1.15fr); gap: 12px; align-items: center; }
+.dg-merge .code-body { font-size: clamp(11px, .95vw, 14px); }
+.dg-op { font-size: 28px; font-weight: 700; color: var(--ink-2); animation: dg-in .55s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc((var(--d, 0) + var(--i, 0)) * 260ms + 300ms); }
+@media (max-width: 760px) { .dg-split, .dg-merge { grid-template-columns: 1fr; } }

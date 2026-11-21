@@ -6,9 +6,9 @@ import { Progress } from './components/Progress.tsx'
 import c0 from './c0/index.tsx'
 import c1 from './c1/index.tsx'
 import c2 from './c2/index.tsx'
-import c3 from './c3/index.ts'
-import c4 from './c4/index.ts'
-import c5 from './c5/index.ts'
+import c3 from './c3/index.tsx'
+import c4 from './c4/index.tsx'
+import c5 from './c5/index.tsx'
 
 export * from './components/types.ts'
 

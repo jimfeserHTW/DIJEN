@@ -160,6 +160,7 @@
 .path li[data-tier='Beginner'] { --tier: var(--ok); }
 .path li[data-tier='Intermediate'] { --tier: var(--blue); }
 .path li[data-tier='Advanced'] { --tier: #b2531a; }
+.path li[data-tier='Expert'] { --tier: var(--c-hyper); }
 /* line to the previous stop: it starts and ends 4px clear of each dot's ring, so it never touches a dot */
 .path li::before { content: ''; position: absolute; top: 13px; left: calc(-50% + 18px); width: calc(100% - 36px); height: 4px; border-radius: 2px; background: var(--ink-3); opacity: .35; }
 .path li[data-done]::before { background: var(--tier); opacity: 1; }

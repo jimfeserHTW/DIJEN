@@ -1,11 +1,9 @@
 /* Chapter 1 layouts. Colours and building blocks come from components/diagram.css and code.css. */
-.ty, .ty-sep, .c1-col > h3, .c1-wide, .c1-legend, .c1-go, .vol-tbl, .vol-tbl tr, .day, .tree, .op, .rules, .num, .tick {
+.ty, .ty-sep, .c1-col > h3, .c1-wide, .c1-legend, .c1-go, .vol-tbl, .vol-tbl tr, .day, .tree, .op, .rules {
   animation: dg-in .55s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc((var(--d, 0) + var(--i, 0)) * 260ms + 300ms); }
 .c1-col { display: grid; gap: 12px; align-content: start; min-width: 0; }
 .c1-col > h3 { font-size: 20px; letter-spacing: -0.02em; display: grid; }
 .c1-col > h3 small { font-size: 14px; font-weight: 500; color: var(--ink-3); }
-.num circle { fill: var(--blue); }
-.num text { fill: #fff; stroke: none; font-size: 13px; font-weight: 700; }
 
 /* 2 · problem: commands with one slip each */
 .c1-problem { display: grid; gap: 8px; }
@@ -58,10 +56,6 @@
 
 /* 10 · start order */
 .c1-order { display: grid; gap: 14px; }
-.tick circle { fill: #c7d1e0; }
-.tick text { fill: #fff; stroke: none; font-size: 13px; font-weight: 700; }
-.tick[data-ok] circle { fill: var(--ok); }
-.tick[data-bad] circle { fill: var(--bad); }
 
 /* 11 · everyday commands */
 .c1-days { display: grid; gap: 16px; }

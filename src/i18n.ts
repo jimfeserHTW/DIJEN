@@ -2,19 +2,19 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import en from './locales/en.ts'
 import de from './locales/de.ts'
+import { QUIZ_EN } from './quizzes.ts'
 
-// Keys are the source text itself (German content, English UI). A missing translation shows the key,
-// so chapters not yet translated (2–5) simply stay in German.
+// Keys are the source text itself (German content, English UI). A missing translation shows the key.
 const saved = (() => { try { return localStorage.getItem('lang') } catch { return null } })()
 
 i18n.use(initReactI18next).init({
-  resources: { en: { translation: en }, de: { translation: de } },
+  resources: { en: { translation: { ...en, ...QUIZ_EN } }, de: { translation: de } },
   lng: saved ?? (navigator.language.startsWith('de') ? 'de' : 'en'),
   fallbackLng: false,
   keySeparator: false,
   nsSeparator: false,
   interpolation: { escapeValue: false },
-  // dev aid: window.__missing lists English gaps, to check that chapters 0 and 1 are fully covered
+  // dev aid: window.__missing lists English gaps
   saveMissing: import.meta.env.DEV,
   saveMissingTo: 'current',
   missingKeyHandler: (lngs, _ns, key) => { if (lngs.includes('en')) ((window as any).__missing ??= new Set()).add(key) },

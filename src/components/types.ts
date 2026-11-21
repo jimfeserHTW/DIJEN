@@ -1,9 +1,8 @@
 // Shared shapes for all chapters. Chapter content lives in src/cN/.
 import type { ReactNode } from 'react'
 
-// Shapes used by the lab and quiz components (not wired up yet).
+// Goal: a checkable lab step.
 export type Goal<T> = { label: string; test: (x: T) => boolean }
-export type Question = { q: string; options: string[]; answer: number; why: string }
 
 // Building blocks. Each builds itself in reading order. In table cells, `code` is rendered as code.
 export type Tone = 'plain' | 'blue' | 'navy' | 'sky' | 'muted' | 'warn'
@@ -23,6 +22,6 @@ export type Visual =
 /** A slide shows generic visuals, or its own chapter-specific diagram (`view`). */
 export type Slide = { title: string; visual?: Visual | Visual[]; view?: ReactNode }
 export type Page = { id: string; title: string; summary: string; slides: Slide[] }
-export type Chapter = { id: string; title: string; level: 'Beginner' | 'Intermediate' | 'Advanced'; blurb: string; pages: Page[] }
+export type Chapter = { id: string; title: string; level: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert'; blurb: string; pages: Page[] }
 
 export const flow = (nodes: NodeD[], links: string[] = []): Visual => ({ kind: 'flow', nodes, links })

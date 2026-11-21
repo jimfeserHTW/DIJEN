@@ -1,16 +1,12 @@
-import type { CSSProperties, ReactNode } from 'react'
-import { Stack, at, type Block, type Row } from '../components/Stack.tsx'
+import type { ReactNode } from 'react'
+import { Stack, at, ctr, vm, css, type Row } from '../components/Stack.tsx'
 import { Svg, Box, Arrow, Label } from '../components/Svg.tsx'
 import { Icon, IconSvg } from '../components/Icons.tsx'
-import { Visuals } from '../components/Visuals.tsx'
 import { t } from '../i18n.ts'
 import './c0.css'
 
 // Chapter 0 diagrams. All stacks use the shared vocabulary: hardware at the bottom, units side by side,
 // a dashed line where "geteilt" ends and "eigen" begins.
-const ctr = (n: string | number, rows: Row[] = ['libs', 'app'], mark?: 'ok' | 'bad', w?: number): Block => ({ unit: `Container ${n}`, kind: 'container', rows, mark, w })
-const vm = (n: number, rows: Row[] = ['guestKernel', 'libs', 'app'], mark?: 'ok' | 'bad'): Block => ({ unit: `VM ${n}`, kind: 'vm', rows, mark })
-const css = (o: Record<string, string | number>) => o as CSSProperties
 
 /* ── 2 · the problem ── */
 export const Problem = () => (
@@ -83,59 +79,6 @@ export const Levels = () => (
       <i />
       <span><b>{t('Grenze tief')}</b> {t('Jede VM bringt sogar einen eigenen Kernel mit')}</span>
     </div>
-  </div>
-)
-
-/* ── 5 · VM versus container ── */
-export const VmVsContainer = () => (
-  <div className="c0-vm">
-    <div className="duo">
-      <Stack size="s" title="Virtuelle Maschinen" sub="jede VM bootet ihren eigenen Kernel" rows={['hardware', 'kernel', 'hypervisor', [vm(1), vm(2), vm(3)]]} boundary={3} />
-      <Stack d={3} size="s" title="Container" sub="alle teilen sich den Host-Kernel" rows={['hardware', 'kernel', 'engine', [ctr(1), ctr(2), ctr(3)]]} boundary={3} />
-    </div>
-    <div className="vis" style={css({ '--d': 8 })}>
-      <Visuals v={{ kind: 'bars', legend: ['VM', 'Container'], rows: [{ label: 'Größe', a: 90, b: 15 }, { label: 'Startzeit', a: 85, b: 10 }] }} />
-    </div>
-  </div>
-)
-
-/* ── 6 · own operating system? ── */
-const distro = (n: number, files: string): Block => ctr(n, [{ part: 'guestKernel', mark: 'gone', sub: 'gibt es nicht' }, { part: 'libs', label: files }, 'app'])
-export const OwnOs = () => (
-  <div className="c0-own">
-    <Stack rows={['hardware', { part: 'kernel', sub: 'Linux · einer für alle Container', mark: 'focus' }, 'engine',
-      [distro(1, 'Ubuntu-Dateien'), distro(2, 'Alpine-Dateien'), distro(3, 'Debian-Dateien')]]} boundary={3} />
-    <div className="answer">
-      <div style={at(5)}><span data-m="ok">✓</span><b>{t('Eigene Betriebssystem-Dateien')}</b><small>{t('Programme und Bibliotheken von Ubuntu, Alpine oder Debian')}</small></div>
-      <div style={at(6)}><span data-m="bad">✗</span><b>{t('Eigener Kernel')}</b><small>{t('Alle Container nutzen den Kernel des Hosts')}</small></div>
-    </div>
-  </div>
-)
-
-/* ── 7 · where Docker sits ── */
-export const Where = () => (
-  <div className="c0-where">
-    <Stack rows={['hardware', 'kernel', [{ part: 'engine', sub: 'Docker', w: 2 }, 'hostApps'], [ctr(1), ctr(2), null]]} roles={[
-      { label: 'Betreiber', sub: 'stellt Rechner und Betriebssystem', from: 0, to: 1 },
-      { label: 'Docker', sub: 'verwaltet Images und Container', from: 2, to: 2 },
-      { label: 'Entwickler', sub: 'liefert, was im Container steckt', from: 3, to: 3 },
-    ]} />
-  </div>
-)
-
-/* ── 8 · Linux, macOS, Windows: inside the VM it is the same stack as on Linux ── */
-const linuxVm = (sub: string): Block => ({ unit: 'Linux-VM', kind: 'vm', sub, rows: [{ part: 'guestKernel', sub: 'Linux', mark: 'focus' }, 'engine', [ctr(1, ['app']), ctr(2, ['app'])]] })
-export const Platforms = () => (
-  <div className="trio c0-plat">
-    <Stack size="s" title="Linux" sub="wie auf allen anderen Folien" rows={[
-      'hardware', { part: 'kernel', sub: 'Linux', mark: 'focus' }, 'engine', [ctr(1, ['app']), ctr(2, ['app'])],
-    ]} />
-    <Stack d={2} size="s" title="macOS" sub="Eine Engine startet eine Linux-VM" rows={[
-      'hardware', { part: 'kernel', sub: 'macOS: kein Linux' }, { part: 'hypervisor', sub: 'von macOS' }, linuxVm('z. B. Docker Desktop, Colima'),
-    ]} />
-    <Stack d={4} size="s" title="Windows" sub="Eine Engine startet eine Linux-VM" rows={[
-      'hardware', { part: 'kernel', sub: 'Windows: kein Linux' }, { part: 'hypervisor', sub: 'von Windows' }, linuxVm('z. B. Docker Desktop, WSL 2'),
-    ]} />
   </div>
 )
 

@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 import { at } from '../components/Stack.tsx'
-import { Svg, Box, Arrow, Label, type ArrowKind } from '../components/Svg.tsx'
+import { Svg, Box, Arrow, Label, Wire, Ctr, Num, Tick } from '../components/Svg.tsx'
 import { Icon, IconSvg } from '../components/Icons.tsx'
 import { Code, type Line } from '../components/Code.tsx'
 import { Visuals } from '../components/Visuals.tsx'
@@ -9,19 +9,6 @@ import './c1.css'
 
 // Chapter 1 diagrams. One running example throughout: project "shop" = WordPress (web) + MySQL (db).
 const css = (o: Record<string, string | number>) => o as CSSProperties
-/** Line without arrow head: a cable between a container and a network. */
-const Wire = ({ d, i = 0, k = 'mute' }: { d: string; i?: number; k?: ArrowKind }) => <g className="sa" data-k={k} style={at(i)}><path d={d} /></g>
-/** Container outline with its name, children drawn inside. */
-const Ctr = ({ x, y, w, h, name, i = 0 }: { x: number; y: number; w: number; h: number; name: string; i?: number }) => (
-  <g className="sb" data-t="container" style={at(i)}>
-    <rect x={x} y={y} width={w} height={h} rx={14} />
-    <text x={x + 14} y={y + 22} fontSize={14} fontWeight={700}>{t(name)}</text>
-  </g>
-)
-/** Numbered badge inside an SVG, matches the badges in a Code panel. */
-const Num = ({ n, x, y, i = 0 }: { n: number; x: number; y: number; i?: number }) => (
-  <g className="sl num" style={at(i)}><circle cx={x} cy={y} r={12} /><text x={x} y={y + 5} textAnchor="middle">{n}</text></g>
-)
 
 /* ── 2 · the problem: one correct command, and the same command with one small slip each ── */
 const run = ['docker run -d', '--name db', '--network shop', '-e MYSQL_ROOT_PASSWORD=geheim', '-v dbdata:/var/lib/mysql', 'mysql:8']
@@ -370,9 +357,6 @@ const Bar = ({ x, w, y, t, label, i }: { x: number; w: number; y: number; t: 'ho
   <Box i={i} x={x} y={y} w={w} h={34} t={t} label={label} size={14} />
 )
 const Lane = ({ y, name, i }: { y: number; name: string; i: number }) => <Label i={i} x={190} y={y + 22} anchor="end" size={15} weight={700}>{name}</Label>
-const Tick = ({ x, y, ok, bad, i }: { x: number; y: number; ok?: boolean; bad?: boolean; i: number }) => (
-  <g className="sl tick" data-ok={ok || undefined} data-bad={bad || undefined} style={at(i)}><circle cx={x} cy={y} r={11} /><text x={x} y={y + 5} textAnchor="middle">{ok ? '✓' : '✗'}</text></g>
-)
 const dbLane = (y: number, i: number) => <>
   <Lane y={y} name="db" i={i} />
   <Bar i={i} x={T0} w={READY - T0} y={y} t="host" label="gestartet, richtet die Datenbank ein …" />
